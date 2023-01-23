@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+}
+
+* body{
+    border: 1px solid red;
+}
+
+div#game-board{
+    position: absolute; 
+    background-color: aquamarine;
+    height: 100vh;
+    width: 100vw;
+}
+
+.sonic{
+    position: absolute;
+    width: 170px;
+    left: 30px;
+    bottom: 0px;
+}
