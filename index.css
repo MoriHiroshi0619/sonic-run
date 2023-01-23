@@ -1,3 +1,10 @@
+@charset "UTF-8";
+
+:root{
+
+    --velo-enemy: 1.2s;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -9,20 +16,66 @@ body{
     width: 100vw;
 }
 
-* body{
-    border: 1px solid red;
-}
-
 div#game-board{
     position: absolute; 
     background-color: aquamarine;
     height: 100vh;
     width: 100vw;
+    border-bottom: 60px solid rgb(45, 186, 45);
 }
 
 .sonic{
     position: absolute;
-    width: 170px;
-    left: 30px;
-    bottom: 0px;
+    width: 140px;
+    left: 180px;
+    bottom: -25px;
+    /*colisao 65px*/
+}
+
+.enemy{
+    position: absolute;
+    bottom: -20px;
+    width: 120px;
+    /*300px colisao frontal*/
+    /*95px passou o sonic*/
+    animation: animation-enemy var(--velo-enemy) infinite linear;
+}
+
+.clouds{
+    position: absolute;
+}
+
+.jump{
+    animation: sonic-jump 0.5s ease-out;
+}
+
+@keyframes animation-enemy{
+    from{
+        right: -120px;
+    }
+    to{
+        right: 100%;
+    }
+}
+
+@keyframes sonic-jump{
+    0%{
+        bottom: -25px;
+    }
+
+    40%{
+        bottom: 150px;
+    }
+
+    50%{
+        bottom: 150px;
+    }
+
+    60%{
+        bottom: 150px;
+    }
+
+    100%{
+        bottom: -25px;
+    }
 }
