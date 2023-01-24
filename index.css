@@ -2,7 +2,7 @@
 
 :root{
 
-    --velo-enemy: 1.2s;
+    --velo-enemy: 2s;
 }
 
 *{
@@ -21,7 +21,9 @@ div#game-board{
     background-color: aquamarine;
     height: 100vh;
     width: 100vw;
-    border-bottom: 60px solid rgb(45, 186, 45);
+    min-width: 700px;
+    border-bottom: 60px solid rgb(67, 220, 67);
+    background-image: linear-gradient(to bottom, #87CEEB, #E0F6FF);
 }
 
 .sonic{
@@ -43,10 +45,12 @@ div#game-board{
 
 .clouds{
     position: absolute;
+    width: 500px;
+    animation: animation-clouds 15s infinite linear;
 }
 
 .jump{
-    animation: sonic-jump 0.5s ease-out;
+    animation: sonic-jump 0.6s ease-out;
 }
 
 @keyframes animation-enemy{
@@ -77,5 +81,14 @@ div#game-board{
 
     100%{
         bottom: -25px;
+    }
+}
+
+@keyframes animation-clouds{
+    from{
+        right: -500px;
+    }
+    to{
+        right: 100%;
     }
 }
