@@ -1,10 +1,4 @@
 @charset "UTF-8";
-
-:root{
-
-    --velo-enemy: 2s;
-}
-
 *{
     margin: 0;
     padding: 0;
@@ -14,38 +8,60 @@
 body{
     height: 100vh;
     width: 100vw;
+    position: absolute;
 }
 
 div#game-board{
-    position: absolute; 
+    position: relative; 
     background-color: aquamarine;
-    height: 100vh;
+    height: 90vh;
     width: 100vw;
-    min-width: 700px;
-    border-bottom: 60px solid rgb(67, 220, 67);
     background-image: linear-gradient(to bottom, #87CEEB, #E0F6FF);
+    overflow: hidden;
 }
+
+.score{
+    position: absolute;
+    height: 60px;
+    width: 300px;
+    background-color: coral;
+    border-radius: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border: 3px solid rgb(254, 68, 0);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.646);
+}
+
 
 .sonic{
     position: absolute;
     width: 140px;
     left: 180px;
-    bottom: -25px;
+    bottom: -7px;
     /*colisao 65px*/
+}
+
+.ground{
+    position: absolute;
+    background-image: linear-gradient(to bottom, rgb(68, 223, 68), green);
+    width: 100vw;
+    height: 10vh;
+    bottom: 0;
 }
 
 .enemy{
     position: absolute;
-    bottom: -20px;
+    bottom: -2px;
     width: 120px;
     /*300px colisao frontal*/
     /*95px passou o sonic*/
-    animation: animation-enemy var(--velo-enemy) infinite linear;
+    animation: animation-enemy 2s infinite linear;
 }
 
 .clouds{
     position: absolute;
     width: 500px;
+    top: 10%;
     animation: animation-clouds 15s infinite linear;
 }
 
@@ -64,23 +80,23 @@ div#game-board{
 
 @keyframes sonic-jump{
     0%{
-        bottom: -25px;
+        bottom: 0px;
     }
 
     40%{
-        bottom: 150px;
+        bottom: 175px;
     }
 
     50%{
-        bottom: 150px;
+        bottom: 175px;
     }
 
     60%{
-        bottom: 150px;
+        bottom: 175px;
     }
 
     100%{
-        bottom: -25px;
+        bottom: 0px;
     }
 }
 
@@ -90,5 +106,16 @@ div#game-board{
     }
     to{
         right: 100%;
+    }
+}
+
+@media (max-width: 570px){
+    .sonic{
+        width: 100px;
+        left: 20px;
+    }
+
+    .enemy{
+        animation: animation-enemy 4s infinite linear;
     }
 }
