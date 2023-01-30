@@ -132,6 +132,7 @@ div#score-board{
 
 
 @media (max-width: 570px){
+    
     .sonic{
         left: 10px;
         width: 100px;
@@ -140,6 +141,12 @@ div#score-board{
     .enemy{
         width: 80px;
         animation: animation-enemy 1.3s infinite linear;
+    }
+    .clouds{
+        top: 0;
+    }
+    #score-board{
+        top: 50%;
     }
 
 }

@@ -19,7 +19,7 @@ const sonicWidth = +window.getComputedStyle(sonic).width.replace('px', '');
 
 const jump = () => {
     sonic.classList.add('jump');
-    sonic.src = 'imagem/sonic-jump.GIF';
+    sonic.src = 'imagem/sonic-jump.gif';
     sonic.style.width = `${sonicWidth-sonicSpin}px`; //-50px
     setTimeout(() => {
         sonic.classList.remove('jump');
