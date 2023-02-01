@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+:root{
+    --board: coral;
+    --border: rgb(254, 68, 0);
+}
 
 @font-face{
     font-family: 'arcade';
@@ -30,6 +34,8 @@ div#game-board{
 }
 
 div#score-board{
+    opacity: 90%;
+    visibility: hidden;
     position: absolute;
     height: 60px;
     width: 300px;
@@ -41,7 +47,48 @@ div#score-board{
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.646);
 }
 
-.score{
+div#menu-board{
+    opacity: 90%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    height: 300px;
+    width: 400px;
+    background-color: var(--board);
+    border: 3px solid var(--border);
+    border-radius: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.646);
+}
+
+div#menu-board > div{
+    font-family: 'arcade';
+    font-size: 2em;
+    color: white;
+
+}
+
+div#menu-board > .button{
+    background-color: rgb(255, 85, 0);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.225);
+    text-align: center;
+    width: 150px;
+    border-radius: 10px;
+}
+
+div#menu-board > .button:hover{
+    font-size: 2.2em;
+    background-color: rgb(232, 93, 24);
+}
+
+
+
+.score{   
     font-family: 'arcade';
     font-size: 2rem;
     color: white;
@@ -76,7 +123,7 @@ div#score-board{
     width: 120px;
     /*300px colisao frontal*/
     /*95px passou o sonic*/
-    animation: animation-enemy 2s infinite linear;
+    visibility: hidden;
 }
 
 .clouds{
@@ -84,6 +131,10 @@ div#score-board{
     width: 500px;
     top: 10%;
     animation: animation-clouds 15s infinite linear;
+}
+
+.run{
+    animation: animation-enemy 2s infinite linear;
 }
 
 .jump{
@@ -147,23 +198,13 @@ div#score-board{
     }
     #score-board{
         top: 50%;
+        width: 80vw;
+    }
+
+    div#menu-board{
+        width: 80vw;
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
