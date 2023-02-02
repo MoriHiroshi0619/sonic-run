@@ -9,9 +9,12 @@ const scoreBoard = document.querySelector('#score-board');
 const gameOverBoard = document.querySelector('#gameOver-board');
 const scored = document.querySelector('#scored');
 const retryButton = document.querySelector('#retry');
-
-
+const bestScore = document.querySelector('#best-score');
+const message = document.querySelector('#message');
 const pageWidth = window.innerWidth;
+
+var beste_score = localStorage.getItem('score') || 0;
+bestScore.innerText = `Best Score: ${beste_score} pts`;
 
 //media querry do js da gambiarra master de todas
 if(pageWidth <= 570){
@@ -19,17 +22,20 @@ if(pageWidth <= 570){
     var sonicSpin = +27 ;
     var sonicWait = 75;
     var sonicRun = 100;
+    var sonicWin = 140;
+    var sonicWinBottom = -10;
 }else{
     //desktop
     var sonicSpin = +50;
     var sonicWait = 105;
     var sonicRun = 140;
+    var sonicWin = 190;
+    var sonicWinBottom = -14;
 }
 
 sonic.src = 'imagem/sonic-wait.GIF'
 sonic.style.width = `${sonicWait}px`;
 sonic.style.bottom = '0px';
-
 
 function play(){
     menuBoard.style.visibility = 'hidden';
@@ -48,6 +54,8 @@ function play(){
     const sonicLeftposition = +window.getComputedStyle(sonic).left.replace('px', '');
     const sonicWidth = +window.getComputedStyle(sonic).width.replace('px', '');
     
+    var aux = false; //pra dizer se o jogo acabou
+    var win = false; //pra dizer se bateu um recorde novo
 
     const jump = () => {
         sonic.classList.add('jump');
@@ -55,8 +63,16 @@ function play(){
         sonic.style.width = `${sonicWidth-sonicSpin}px`; //-50px
         setTimeout(() => {
             sonic.classList.remove('jump');
-            sonic.src = 'imagem/sonic-run.GIF';
-            sonic.style.width = `${sonicWidth}px`
+            if(aux){
+                if(win){
+                    sonic.src = 'imagem/sonic-dance.gif';
+                }else{
+                    sonic.src = 'imagem/sonic-game-over.png';
+                }
+            }else{
+                sonic.src = 'imagem/sonic-run.GIF';
+                sonic.style.width = `${sonicWidth}px`
+            }
         }, 600);
     }
     
@@ -73,8 +89,8 @@ function play(){
         score.innerHTML = `score -> ${s}`;
         s++;
             
-        console.log('loop');
         if(enemyPosition <= sonicColiFront  && enemyPosition >= sonicLeftposition - 50  && sonicPosition <= 65){
+            aux = true;
             document.removeEventListener('keydown', jump);    
             document.removeEventListener('touchstart', jump);
             enemy.classList.remove('run');
@@ -82,11 +98,11 @@ function play(){
             enemy.style.animation = 'none'; 
             enemy.style.left = `${enemyPosition}px`;
             
-            sonic.style.animation = 'none';
-            sonic.style.width = `${sonicWidth+30}px`;
-            sonic.style.bottom = `${sonicPosition}px`;
-            sonic.src = 'imagem/sonic-game-over.png';
-            
+            //sonic.style.animation = 'none';
+            //sonic.style.width = `${sonicWidth+30}px`;
+            //sonic.style.bottom = `${sonicPosition}px`;
+            //sonic.src = 'imagem/sonic-game-over.png';
+
             cloud.style.left = `${cloudPosition}px`;
             cloud.style.animation = 'none';   
 
@@ -94,7 +110,20 @@ function play(){
             cloud2.style.animation = 'none';   
             
             clearInterval(loop); 
-            gameOVer(s);
+            if(s > beste_score){
+                win = true;
+                localStorage.setItem('score', JSON.stringify(s));
+                enemy.style.visibility = 'hidden';
+                sonic.src = 'imagem/sonic-dance.gif';
+                sonic.style.width = `${sonicWin}px`;
+                sonic.style.bottom = `${sonicWinBottom}px`
+            }else{
+                sonic.src = 'imagem/sonic-game-over.png';
+                sonic.style.animation = 'none';
+                sonic.style.width = `${sonicWidth+30}px`;
+                sonic.style.bottom = `${sonicPosition}px`;
+            }
+            gameOVer(s, win);
         }
     },10);
 
@@ -102,16 +131,19 @@ function play(){
     document.addEventListener('touchstart', jump); 
 }
 
-function gameOVer(s){
+function gameOVer(s, win){
+    if(win){
+        message.innerHTML = 'Yeah! you did it.'
+    }else{
+        message.innerText = 'Game over!'
+    }
     scoreBoard.style.visibility = 'hidden';
     gameOverBoard.style.visibility = 'visible'
     scored.innerText = `scored ${s} pts`
-    sonic.src = 'imagem/sonic-game-over.png';
     retryButton.addEventListener('click', function(){
         location.reload();
     });
 }
-
 
 playButton.addEventListener('click', play);
 
