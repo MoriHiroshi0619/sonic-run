@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
 :root{
     --board: coral;
     --border: rgb(254, 68, 0);
@@ -60,7 +62,7 @@ div#score-board{
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.646);
 }
 
-div#menu-board{
+#menu-board{
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -79,12 +81,43 @@ div#menu-board{
     
 }
 
-div#menu-board > div{
+#menu-board > div{
     font-family: 'arcade';
     font-size: 2em;
     color: white;
-
 }
+
+#about-board{
+    position: absolute;
+    height: 400px;
+    width: 400px;
+    background-color: var(--board);
+    border: 3px solid var(--border);
+    border-radius: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.646);
+    overflow: auto;
+    visibility: hidden;
+}
+
+#back{
+    font-family: 'arcade';
+    font-size: 2em;
+    color: white;
+    margin: auto;
+    margin-top: 20px;
+}
+
+#text{
+    padding: 20px;
+    font-family: 'Roboto Mono', monospace;
+    text-align: justify;
+    font-size: 1.5em;
+    color: white;
+}
+
 
 .button{
     background-color: rgb(255, 85, 0);
@@ -177,6 +210,9 @@ div#menu-board > div{
     animation: sonic-jump 0.6s ease-out;
 }
 
+a{
+    color: antiquewhite;
+}
 @keyframes animation-enemy{
     from{
         right: -120px;
@@ -242,7 +278,7 @@ div#menu-board > div{
         top: 50%;
         width: 80vw;
     }
-    div#menu-board{
+    #menu-board{
         height: 200px;
         gap: 18px;
         width: 80vw;
@@ -251,6 +287,9 @@ div#menu-board > div{
         height: 200px;
         gap: 18px;
         width: 80vw;
+    }
+    #about-board{
+        width: 90vw;
     }
 }
 

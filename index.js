@@ -11,10 +11,13 @@ const scored = document.querySelector('#scored');
 const retryButton = document.querySelector('#retry');
 const bestScore = document.querySelector('#best-score');
 const message = document.querySelector('#message');
+const aboutButton = document.querySelector('#about');
+const aboutBoarder = document.querySelector('#about-board');
+const backButton = document.querySelector('#back');
 const pageWidth = window.innerWidth;
 
 var beste_score = localStorage.getItem('score') || 0;
-bestScore.innerText = `Best Score: ${beste_score} pts`;
+bestScore.innerText = `Best Score: ${beste_score}`;
 
 //media querry do js da gambiarra master de todas
 if(pageWidth <= 570){
@@ -86,7 +89,7 @@ function play(){
     
         var sonicColiFront = sonicLeftposition + sonicWidth - 20;
         
-        score.innerHTML = `score -> ${s}`;
+        score.innerHTML = `score: ${s}`;
         s++;
             
         if(enemyPosition <= sonicColiFront  && enemyPosition >= sonicLeftposition - 50  && sonicPosition <= 65){
@@ -145,6 +148,21 @@ function gameOVer(s, win){
     });
 }
 
+function about(){
+    menuBoard.style.visibility = 'hidden';
+    aboutBoarder.style.visibility = 'visible';
+
+    backButton.addEventListener('click', back)
+}
+
+function back(){
+    backButton.removeEventListener('click', back);
+    menuBoard.style.visibility = 'visible';
+    aboutBoarder.style.visibility = 'hidden';
+
+}
+
+aboutButton.addEventListener('click', about);
 playButton.addEventListener('click', play);
 
 
