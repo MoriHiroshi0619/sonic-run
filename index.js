@@ -14,6 +14,7 @@ const message = document.querySelector('#message');
 const aboutButton = document.querySelector('#about');
 const aboutBoarder = document.querySelector('#about-board');
 const backButton = document.querySelector('#back');
+const resetButton = document.querySelector('#reset');
 const pageWidth = window.innerWidth;
 
 var beste_score = localStorage.getItem('score') || 0;
@@ -151,7 +152,6 @@ function gameOVer(s, win){
 function about(){
     menuBoard.style.visibility = 'hidden';
     aboutBoarder.style.visibility = 'visible';
-
     backButton.addEventListener('click', back)
 }
 
@@ -159,9 +159,15 @@ function back(){
     backButton.removeEventListener('click', back);
     menuBoard.style.visibility = 'visible';
     aboutBoarder.style.visibility = 'hidden';
-
 }
 
+function reset(){
+    localStorage.setItem('score', '0');
+    location.reload();
+}
+
+
+resetButton.addEventListener('click', reset);
 aboutButton.addEventListener('click', about);
 playButton.addEventListener('click', play);
 
