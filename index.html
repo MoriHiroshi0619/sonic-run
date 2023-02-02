@@ -8,26 +8,31 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div id="game-board">
-        <img src="imagem/cloud.PNG" alt="clouds" class="clouds">
+    <div id="realGame_board">
+        <div id="game-board">
+            <img src="imagem/cloud.PNG" alt="clouds" class="clouds2">
+            <img src="imagem/cloud.PNG" alt="clouds" class="clouds">
 
-        <div id="score-board"> 
-            <p class="score"></p>
-        </div>
+            <div id="score-board">
+                <p class="score"></p>
+            </div>
         
-        <div id="menu-board">
-            <div id="best-score">Best Score = #####</div>
-            <div id="play" class="button">Play</div>
-            <div id="play" class="button">About?</div>
-        </div>
-
-
-        <img alt="sonic" class="sonic">
+            <div id="menu-board">
+                <div id="best-score">Best Score = #####</div>
+                <div id="play" class="button">Play</div>
+                <div id="about" class="button">About?</div>
+            </div>
+            <div id="gameOver-board">
+                <div>Game Over!</div>
+                <div id="scored">scored ### pts</div>
+                <div id="retry" class="button">Menu</div>
+            </div>
+            <img alt="sonic" class="sonic">
         
-        <img src="imagem/enemy01.GIF" alt="enemy01" class="enemy">
-
+            <img src="imagem/enemy01.GIF" alt="enemy01" class="enemy">
+        </div>
+        <div class="ground"></div>
     </div>
-    <div class="ground"></div>
     <script src="index.js"></script>
 </body>
 </html>

@@ -21,20 +21,33 @@
 body{
     height: 100vh;
     width: 100vw;
-    position: absolute;
+    background-image: linear-gradient(to bottom, rgb(215, 101, 1) 85%, rgb(154, 46, 7) 100%);
 }
 
-div#game-board{
-    position: relative; 
-    background-color: aquamarine;
-    height: 90vh;
+#realGame_board{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+#game-board{
+    position: absolute; 
+    height: 90%;
     width: 100vw;
     background-image: linear-gradient(to bottom, #87CEEB, #E0F6FF);
     overflow: hidden;
 }
 
+.ground{
+    position: absolute;
+    background-image: linear-gradient(to bottom, rgb(68, 223, 68), green);
+    width: 100vw;
+    height: 10%;
+    bottom: 0;
+}
+
 div#score-board{
-    opacity: 90%;
     visibility: hidden;
     position: absolute;
     height: 60px;
@@ -48,7 +61,6 @@ div#score-board{
 }
 
 div#menu-board{
-    opacity: 90%;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -64,6 +76,7 @@ div#menu-board{
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.646);
+    
 }
 
 div#menu-board > div{
@@ -73,7 +86,7 @@ div#menu-board > div{
 
 }
 
-div#menu-board > .button{
+.button{
     background-color: rgb(255, 85, 0);
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.225);
     text-align: center;
@@ -81,12 +94,35 @@ div#menu-board > .button{
     border-radius: 10px;
 }
 
-div#menu-board > .button:hover{
+.button:hover{
     font-size: 2.2em;
     background-color: rgb(232, 93, 24);
 }
 
+#gameOver-board{
+    position: absolute;
+    background-color: var(--board);
+    height: 300px;
+    width: 400px;
+    border: 3px solid var(--border);
+    border-radius: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.646);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    visibility: hidden;
+}
 
+#gameOver-board > div{
+    font-family: 'arcade';
+    font-size: 2em;
+    color: white;
+}
 
 .score{   
     font-family: 'arcade';
@@ -109,13 +145,6 @@ div#menu-board > .button:hover{
     /*colisao 65px*/
 }
 
-.ground{
-    position: absolute;
-    background-image: linear-gradient(to bottom, rgb(68, 223, 68), green);
-    width: 100vw;
-    height: 10vh;
-    bottom: 0;
-}
 
 .enemy{
     position: absolute;
@@ -128,9 +157,16 @@ div#menu-board > .button:hover{
 
 .clouds{
     position: absolute;
-    width: 500px;
-    top: 10%;
+    width: 550px;
+    top: 5%;
     animation: animation-clouds 15s infinite linear;
+}
+
+.clouds2{
+    position: absolute;
+    width: 200px;
+    top: 40%;
+    animation: animation-clouds 23s infinite linear;
 }
 
 .run{
@@ -182,29 +218,40 @@ div#menu-board > .button:hover{
 }
 
 
-@media (max-width: 570px){
-    
+@media (max-width: 570px){ 
     .sonic{
         left: 10px;
-        width: 100px;
     }
-
     .enemy{
         width: 80px;
+    }
+    .run{
         animation: animation-enemy 1.3s infinite linear;
     }
     .clouds{
-        top: 0;
+        top: 5%;
+        width: 350px;
+    }
+    .clouds2{
+        top: 30%;
+    }
+    #realGame_board{
+        height: 85vh;
     }
     #score-board{
         top: 50%;
         width: 80vw;
     }
-
     div#menu-board{
+        height: 200px;
+        gap: 18px;
         width: 80vw;
     }
-
+    #gameOver-board{
+        height: 200px;
+        gap: 18px;
+        width: 80vw;
+    }
 }
 
 
